@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TU SPE Polo Shirt Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        p {
+            text-align: center;
+            color: #555;
+        }
+        .images {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        .images img {
+            max-width: 100%;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #003f88;
+        }
+        .quantity-section {
+            margin-top: 20px;
+        }
+        .quantity-section label {
+            display: inline-block;
+            width: 70%;
+        }
+        .quantity-section input {
+            width: 25%;
+            display: inline-block;
+        }
+        .warning {
+            text-align: center;
+            font-weight: bold;
+            color: #d9534f;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TU SPE Polo Shirt Order Form</h1>
+        <p>Each shirt is $35. You are welcome to choose one or both options.</p>
+        <p>Choose the quantity for each color, specify the sizes, and select the style (Male or Female).</p>
+        
+        <!-- Shirt Images -->
+        <div class="images">
+            <div>
+                <img src="Blue polo.png" alt="Blue TU SPE Polo">
+                <p style="text-align:center;">Blue Polo Shirt</p>
+            </div>
+            <div>
+                <img src="Black polo.jpg" alt="Black TU SPE Polo">
+                <p style="text-align:center;">Black Polo Shirt</p>
+            </div>
+        </div>
+        
+        <!-- Order Form -->
+        <form action="https://formspree.io/f/xldelyrq" method="POST" onsubmit="return validateForm()">
+            <!-- Personal Information -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="student-id">TU Student ID:</label>
+            <input type="text" id="student-id" name="student-id" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="_replyto" required>
+
+            <!-- Shirt Gender Option -->
+            <label for="gender">Select Shirt Style:</label>
+            <select id="gender" name="gender" required>
+                <option value="">--Select Male or Female--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <!-- Shirt Quantities -->
+            <div class="quantity-section">
+                <label for="blue-quantity">Quantity of Blue Shirts:</label>
+                <input type="number" id="blue-quantity" name="blue-quantity" min="0" value="0">
+            </div>
+
+            <label for="blue-size">Size for Blue Shirts:</label>
+            <select id="blue-size" name="blue-size">
+                <option value="">--Select Size--</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="X-Large">X-Large</option>
+                <option value="XX-Large">XX-Large</option>
+            </select>
+
+            <div class="quantity-section">
+                <label for="black-quantity">Quantity of Black Shirts:</label>
+                <input type="number" id="black-quantity" name="black-quantity" min="0" value="0">
+            </div>
+
+            <label for="black-size">Size for Black Shirts:</label>
+            <select id="black-size" name="black-size">
+                <option value="">--Select Size--</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="X-Large">X-Large</option>
+                <option value="XX-Large">XX-Large</option>
+            </select>
+
+            <!-- Notes -->
+            <label for="notes">Additional Notes (Optional):</label>
+            <input type="text" id="notes" name="notes">
+
+            <!-- Submit -->
+            <button type="submit">Submit Order</button>
+        </form>
+
+        <p class="warning">
+            ** Please press the submit button only once and wait for the thank you screen to confirm your submission. **
+        </p>
+    </div>
+
+    <script>
+        function validateForm() {
+            const blueQuantity = parseInt(document.getElementById('blue-quantity').value);
+            const blackQuantity = parseInt(document.getElementById('black-quantity').value);
+            const blueSize = document.getElementById('blue-size').value;
+            const blackSize = document.getElementById('black-size').value;
+
+            if (blueQuantity > 0 && blueSize === "") {
+                alert("Please select a size for the blue shirts.");
+                return false;
+            }
+
+            if (blackQuantity > 0 && blackSize === "") {
+                alert("Please select a size for the black shirts.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
