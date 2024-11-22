@@ -99,7 +99,11 @@
         </div>
         
         <!-- Order Form -->
-        <form name="TU_Polo_Order_Form" netlify method="POST">
+        <form name="TU_Polo_Order_Form" netlify method="POST" onsubmit="return validateForm()">
+            <!-- Hidden Fields for Netlify Forms and Redirect -->
+            <input type="hidden" name="form-name" value="TU_Polo_Order_Form">
+            <input type="hidden" name="_redirect" value="https://your-site-name.netlify.app/thank-you.html">
+
             <!-- Personal Information -->
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
